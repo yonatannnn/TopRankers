@@ -5,6 +5,7 @@ import 'package:ranker/auth/auth_gate.dart';
 import 'package:ranker/firebase_options.dart';
 import './screens/login_screen.dart';
 import './screens/registration_screen.dart';
+import './screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

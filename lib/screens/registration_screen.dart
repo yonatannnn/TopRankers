@@ -25,13 +25,10 @@ class _LoginScreenState extends State<RegistrationScreen> {
     if (widget._passwordController.text ==
         widget._confirmPasswordController.text) {
       try {
-        // Call your authentication service to sign up the user
         await authService.signUnWithEmainAndPassword(
             widget._emailController.text, widget._passwordController.text);
-
-        // If registration is successful, navigate back to the login screen
-        Navigator.pop(
-            context); // This will close the current screen and return to the previous screen (login screen)
+        print('User Signed Up');
+        Navigator.pop(context);
       } catch (e) {
         print(e);
       }
@@ -90,11 +87,6 @@ class _LoginScreenState extends State<RegistrationScreen> {
                           controller: widget._confirmPasswordController),
                       Row(
                         children: [
-                          Container(
-                            height: 15,
-                            width: 15,
-                            color: Colors.white,
-                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -117,17 +109,38 @@ class _LoginScreenState extends State<RegistrationScreen> {
                           alignment: Alignment.center,
                           child: Text(
                             "Sign up",
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 183, 0, 0)),
                           ),
                         ),
                       ),
                       const Spacer(),
-                      Center(
-                          child: TextUtil(
-                        text: "have an account Login",
-                        size: 12,
-                        weight: true,
-                      )),
+                      const Spacer(),
+                      Container(
+                        height: 15,
+                        width: double.maxFinite,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white.withOpacity(0.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: Container(
+                            height: 40,
+                            width: double.infinity,
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Back to Login",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 249, 249, 249)),
+                            ),
+                          ),
+                        ),
+                      ),
                       const Spacer(),
                     ],
                   ),

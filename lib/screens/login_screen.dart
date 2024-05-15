@@ -7,6 +7,7 @@ import '../widgets/text_field.dart';
 import '../data/bg_data.dart';
 import '../utils/text_utils.dart';
 import '../auth/auth.dart';
+import '../screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -24,8 +25,12 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await authService.signInWithEmainAndPassword(
           widget._emailController.text, widget._passwordController.text);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
     } catch (e) {
-      print(e);
+      print('not valid user');
     }
   }
 
@@ -96,13 +101,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ElevatedButton(
                         onPressed: () {
                           login();
+                          print(widget._emailController.text);
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          backgroundColor:
-                              Colors.white, // Button background color
+                          backgroundColor: Colors.white,
                         ),
                         child: Container(
                           height: 40,
@@ -110,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           alignment: Alignment.center,
                           child: Text(
                             "Log In",
-                            style: TextStyle(color: Colors.black), // Text color
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
                       ),
